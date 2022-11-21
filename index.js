@@ -16,16 +16,12 @@ function wikipediaExtract(language, title) {
   const link = endpoint + params;
 
   async function getResponse(url) {
-    return await axios
-      .get(url)
-      .catch((error) => console.log("An error has occurred: " + error))
-      .then((response) => {
-        return (
-          response.data.query.pages[0].title +
-          "\n\n" +
-          response.data.query.pages[0].extract
-        );
-      });
+    var response = await axios.get(url);
+    return (
+      response.data.query.pages[0].title +
+      "\n\n" +
+      response.data.query.pages[0].extract
+    );
   }
 
   return getResponse(link);
